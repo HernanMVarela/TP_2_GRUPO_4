@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TP N°2 - GRUPO 4</string>
+    <string name="title_header_main">Home</string>
+    <string name="title_header_1">Ventana 1</string>
+    <string name="title_header_2">Ventana 2</string>
+
+    <!-- STRINGS MENU DE NAVEGACION -->
+    <string name="menu_title_agregar">Agregar contacto</string>
+    <string name="menu_title_listar">Listado de contactos</string>
+
+
+</resources>
