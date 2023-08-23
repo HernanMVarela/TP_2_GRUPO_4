@@ -5,12 +5,4 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="visible"
-    tools:context=".MainActivity">
-
-    <include
-        android:id="@+id/include"
-        layout="@layout/header_layout"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="214dp"></include>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    tools:context=".MainActivity"/>

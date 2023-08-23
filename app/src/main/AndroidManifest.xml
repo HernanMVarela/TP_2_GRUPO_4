@@ -13,6 +13,9 @@
         android:theme="@style/Theme.TP_2_GRUPO_4"
         tools:targetApi="31">
         <activity
+            android:name=".AgregarContactoView2"
+            android:exported="false" />
+        <activity
             android:name=".ListadoContactosActivity"
             android:exported="false" />
         <activity
