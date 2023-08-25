@@ -3,6 +3,7 @@ package frgp.utn.edu.tp_2_grupo_4;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu_nav){
         MenuInflater infilter = getMenuInflater();
         infilter.inflate(R.menu.menu_es_activity, menu_nav);
-        return true;
+        return super.onCreateOptionsMenu(menu_nav);
     }
 
     @Override public boolean onOptionsItemSelected(MenuItem opcion_menu){
@@ -34,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
             navegar_listado_contactos(null);
             return true;
         }
-
         return super.onOptionsItemSelected(opcion_menu);
     }
 

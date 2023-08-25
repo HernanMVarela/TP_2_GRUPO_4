@@ -6,4 +6,181 @@
     android:layout_height="match_parent"
     tools:context=".AgregarContactoActivity">
 
+    <TextView
+        android:id="@+id/txvForm_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/form_contacto"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txvForm_Desc"
+        android:layout_width="373dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/form_desc"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvForm_Title" />
+
+    <ScrollView
+        android:id="@+id/scrView_form"
+        android:layout_width="397dp"
+        android:layout_height="504dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvForm_Desc"
+        app:layout_constraintVertical_bias="0.2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/txvFomNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/form_nombre"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/etvFormNombre"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:ems="10"
+                android:hint="@string/form_nombre"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/txvFormApellido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="@string/form_apellido"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/etvFormApellido"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:ems="10"
+                android:hint="@string/form_apellido"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/txvFormTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="@string/form_telefono"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etvFormTelefono"
+                    android:layout_width="260dp"
+                    android:layout_height="60dp"
+                    android:ems="10"
+                    android:hint="@string/form_telefono"
+                    android:inputType="phone" />
+
+                <Spinner
+                    android:id="@+id/spinFormTelefono"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txvFormMail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="@string/form_email"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etvFormEmail"
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/form_email"
+                    android:inputType="textEmailAddress" />
+
+                <Spinner
+                    android:id="@+id/spinFormEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txvFormDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="@string/form_direccion"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/etvFormDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:ems="10"
+                android:hint="@string/form_direccion"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/txvFormNacimiento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="@string/form_nacimiento"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/etvFormDate"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:ems="10"
+                android:hint="@string/form_nacimiento"
+                android:inputType="date" />
+
+            <Button
+                android:id="@+id/btnContinuar"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="#03A9F4"
+                android:onClick="navegar_contactos_dos"
+                android:text="@string/form_continuar" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

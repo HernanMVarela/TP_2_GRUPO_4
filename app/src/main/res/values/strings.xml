@@ -8,5 +8,18 @@
     <string name="menu_title_agregar">Agregar contacto</string>
     <string name="menu_title_listar">Listado de contactos</string>
 
+    <!-- STRINGS FORMULARIO DE CONTACTO -->
+    <string name="form_contacto">Formulario de contacto</string>
+    <string name="form_desc">Este es un formulario destinado al registro de personas, sus datos personales e intereses.</string>
+    <string name="form_nombre">Nombre</string>
+    <string name="form_apellido">Apellido</string>
+    <string name="form_telefono">Teléfono</string>
+    <string name="form_email">Email</string>
+    <string name="form_direccion">Dirección</string>
+    <string name="form_nacimiento">Fecha de nacimiento</string>
+    <string name="form_spinner_casa">Casa</string>
+    <string name="form_spinner_trabajo">Trabajo</string>
+    <string name="form_spinner_movil">Móvil</string>
+    <string name="form_continuar">Continuar</string>
 
 </resources>
