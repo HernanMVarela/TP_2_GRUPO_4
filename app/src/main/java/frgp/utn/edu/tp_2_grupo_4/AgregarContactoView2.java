@@ -28,5 +28,8 @@ public class AgregarContactoView2 extends AppCompatActivity {
         obj_editor.commit();
 
         Toast.makeText(this, "Guardado", Toast.LENGTH_SHORT).show();
+
+        android.content.Intent intent = new android.content.Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

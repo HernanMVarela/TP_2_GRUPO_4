@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class ListadoContactosActivity extends AppCompatActivity {
 
     private TextView textViewP;
@@ -24,5 +26,9 @@ public class ListadoContactosActivity extends AppCompatActivity {
         else{
             textViewP.setText(datos);
         }
+    }
+    public void regresar(android.view.View view) {
+        android.content.Intent intent = new android.content.Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
