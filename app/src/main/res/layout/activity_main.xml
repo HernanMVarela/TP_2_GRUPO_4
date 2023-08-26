@@ -11,31 +11,20 @@
         android:id="@+id/txvNombre1"
         android:layout_width="278dp"
         android:layout_height="43dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="96dp"
         android:text="@string/nombre1"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txvNombre5"
-        android:layout_width="278dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/nombre5"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/txvNombre1"
-        app:layout_constraintTop_toBottomOf="@+id/txvNombre1" />
 
     <TextView
         android:id="@+id/txvNombre4"
         android:layout_width="278dp"
         android:layout_height="43dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:text="@string/nombre4"
         android:textAlignment="center"
         android:textSize="20sp"
@@ -46,7 +35,7 @@
         android:id="@+id/txvNombre3"
         android:layout_width="278dp"
         android:layout_height="43dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:text="@string/nombre3"
         android:textAlignment="center"
         android:textSize="20sp"
@@ -63,6 +52,17 @@
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/txvNombre3"
         app:layout_constraintTop_toBottomOf="@+id/txvNombre3" />
+
+    <TextView
+        android:id="@+id/txvNombre5"
+        android:layout_width="278dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/nombre5"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/txvNombre1"
+        app:layout_constraintTop_toBottomOf="@+id/txvNombre1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
