@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class ListadoContactosActivity extends AppCompatActivity {
 
@@ -20,11 +21,11 @@ public class ListadoContactosActivity extends AppCompatActivity {
 
         textViewP = (TextView) findViewById(R.id.textViewPrueba);
         SharedPreferences preferencias = getSharedPreferences("agenda", Context.MODE_PRIVATE);
-        String datos = preferencias.getString("Leo","");
+        Set<String> datos = preferencias.getStringSet("Leo",null);
 
-        if(datos.length()==0){}
+        if(datos.isEmpty()){}
         else{
-            textViewP.setText(datos);
+            textViewP.setText(datos.toString());
         }
     }
     public void regresar(android.view.View view) {

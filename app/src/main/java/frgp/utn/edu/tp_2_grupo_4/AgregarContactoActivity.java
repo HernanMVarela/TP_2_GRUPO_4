@@ -19,6 +19,9 @@ public class AgregarContactoActivity extends AppCompatActivity {
     private EditText contactTel;
     private EditText contactNom;
     private EditText contactApe;
+    private EditText contactEma;
+    private EditText contactDir;
+    private EditText contactDat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +38,9 @@ public class AgregarContactoActivity extends AppCompatActivity {
         contactTel = (EditText)findViewById(R.id.etvFormTelefono);
         contactNom = (EditText)findViewById(R.id.etvFormNombre);
         contactApe = (EditText)findViewById(R.id.etvFormApellido);
+        contactEma = (EditText)findViewById(R.id.etvFormEmail);
+        contactDir = (EditText)findViewById(R.id.etvFormDireccion);
+        contactDat = (EditText)findViewById(R.id.etvFormDate);
 
     }
 
@@ -47,6 +53,9 @@ public class AgregarContactoActivity extends AppCompatActivity {
         Info.add(contactNom.getText().toString());
         Info.add(contactApe.getText().toString());
         Info.add(contactTel.getText().toString());
+        Info.add(contactEma.getText().toString());
+        Info.add(contactDir.getText().toString());
+        Info.add(contactDat.getText().toString());
         intent.putExtra("ArrayInfo", Info);
         startActivity(intent);
     }

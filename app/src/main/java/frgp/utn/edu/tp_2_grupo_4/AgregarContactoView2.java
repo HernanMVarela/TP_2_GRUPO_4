@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 public class AgregarContactoView2 extends AppCompatActivity {
 
@@ -20,15 +23,19 @@ public class AgregarContactoView2 extends AppCompatActivity {
     public void Guardar(android.view.View view){
         String InfoNom = getIntent().getStringExtra("InfoNom");
 
-        ArrayList<String> Info = getIntent().getStringArrayListExtra("ArrayInfo");
+        Set<String> Info = new HashSet(getIntent().getStringArrayListExtra("ArrayInfo"));
+        //Collections.sort(Info);
+        if(!Info.isEmpty()){
+            SharedPreferences preferencias = getSharedPreferences("agenda", Context.MODE_PRIVATE);
+            SharedPreferences.Editor obj_editor = preferencias.edit();
+            obj_editor.putStringSet(InfoNom,Info);
+            obj_editor.commit();
 
-        SharedPreferences preferencias = getSharedPreferences("agenda", Context.MODE_PRIVATE);
-        SharedPreferences.Editor obj_editor = preferencias.edit();
-        obj_editor.putString(InfoNom,Info.toString());
-        obj_editor.commit();
-
-        Toast.makeText(this, "Guardado", Toast.LENGTH_SHORT).show();
-
+            Toast.makeText(this, "Guardado", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+        }
         android.content.Intent intent = new android.content.Intent(this, MainActivity.class);
         startActivity(intent);
     }
