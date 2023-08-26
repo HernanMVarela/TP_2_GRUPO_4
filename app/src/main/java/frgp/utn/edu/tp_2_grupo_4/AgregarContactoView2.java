@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class AgregarContactoView2 extends AppCompatActivity {
 
     @Override
@@ -17,12 +19,12 @@ public class AgregarContactoView2 extends AppCompatActivity {
 
     public void Guardar(android.view.View view){
         String InfoNom = getIntent().getStringExtra("InfoNom");
-        String InfoApe = getIntent().getStringExtra("InfoApe");
-        String InfoTel = getIntent().getStringExtra("InfoTel");
+
+        ArrayList<String> Info = getIntent().getStringArrayListExtra("ArrayInfo");
 
         SharedPreferences preferencias = getSharedPreferences("agenda", Context.MODE_PRIVATE);
         SharedPreferences.Editor obj_editor = preferencias.edit();
-        obj_editor.putString(InfoNom,InfoTel);
+        obj_editor.putString(InfoNom,Info.toString());
         obj_editor.commit();
 
         Toast.makeText(this, "Guardado", Toast.LENGTH_SHORT).show();

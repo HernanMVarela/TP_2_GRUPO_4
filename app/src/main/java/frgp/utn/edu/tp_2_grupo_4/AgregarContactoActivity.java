@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
+
 public class AgregarContactoActivity extends AppCompatActivity {
 
     private Spinner spinnerTelefono;
@@ -33,13 +35,19 @@ public class AgregarContactoActivity extends AppCompatActivity {
         contactTel = (EditText)findViewById(R.id.etvFormTelefono);
         contactNom = (EditText)findViewById(R.id.etvFormNombre);
         contactApe = (EditText)findViewById(R.id.etvFormApellido);
+
     }
 
     public void navegar_contactos_dos(android.view.View view) {
         android.content.Intent intent = new android.content.Intent(this, AgregarContactoView2.class);
-        intent.putExtra("InfoTel", contactTel.getText().toString());
+
         intent.putExtra("InfoNom", contactNom.getText().toString());
-        intent.putExtra("InfoApe", contactApe.getText().toString());
+
+        ArrayList<String> Info = new ArrayList<>();
+        Info.add(contactNom.getText().toString());
+        Info.add(contactApe.getText().toString());
+        Info.add(contactTel.getText().toString());
+        intent.putExtra("ArrayInfo", Info);
         startActivity(intent);
     }
 
