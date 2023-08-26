@@ -14,22 +14,29 @@ import java.util.Set;
 public class ListadoContactosActivity extends AppCompatActivity {
 
     private TextView textViewP;
+    private EditText etBuscar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado_contactos);
 
         textViewP = (TextView) findViewById(R.id.textViewPrueba);
-        SharedPreferences preferencias = getSharedPreferences("agenda", Context.MODE_PRIVATE);
-        Set<String> datos = preferencias.getStringSet("Leo",null);
-
-        if(datos.isEmpty()){}
-        else{
-            textViewP.setText(datos.toString());
-        }
+        etBuscar = (EditText) findViewById(R.id.etBuscar);
     }
     public void regresar(android.view.View view) {
         android.content.Intent intent = new android.content.Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    public void buscar(android.view.View view){
+        SharedPreferences preferencias = getSharedPreferences("agenda", Context.MODE_PRIVATE);
+        Set<String> datos = preferencias.getStringSet(etBuscar.getText().toString(),null);
+
+        if(datos.isEmpty()){
+            textViewP.setText("");
+        }
+        else{
+            textViewP.setText(datos.toString());
+        }
     }
 }
