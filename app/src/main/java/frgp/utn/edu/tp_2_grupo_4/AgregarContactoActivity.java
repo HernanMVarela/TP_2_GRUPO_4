@@ -7,12 +7,18 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
+
+import java.util.ArrayList;
 
 public class AgregarContactoActivity extends AppCompatActivity {
 
     private Spinner spinnerTelefono;
     private Spinner spinnerMail;
+    private EditText contactTel;
+    private EditText contactNom;
+    private EditText contactApe;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,10 +31,23 @@ public class AgregarContactoActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,opciones);
         spinnerTelefono.setAdapter(adapter);
         spinnerMail.setAdapter(adapter);
+
+        contactTel = (EditText)findViewById(R.id.etvFormTelefono);
+        contactNom = (EditText)findViewById(R.id.etvFormNombre);
+        contactApe = (EditText)findViewById(R.id.etvFormApellido);
+
     }
 
     public void navegar_contactos_dos(android.view.View view) {
         android.content.Intent intent = new android.content.Intent(this, AgregarContactoView2.class);
+
+        intent.putExtra("InfoNom", contactNom.getText().toString());
+
+        ArrayList<String> Info = new ArrayList<>();
+        Info.add(contactNom.getText().toString());
+        Info.add(contactApe.getText().toString());
+        Info.add(contactTel.getText().toString());
+        intent.putExtra("ArrayInfo", Info);
         startActivity(intent);
     }
 
