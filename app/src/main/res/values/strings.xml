@@ -4,6 +4,13 @@
     <string name="title_header_1">Ventana 1</string>
     <string name="title_header_2">Ventana 2</string>
 
+    <!-- STRINGS NOMBRES Y APELLIDOS-->
+    <string name="nombre1">Clifton Manuel</string>
+    <string name="nombre2">Fernandez Leonardo</string>
+    <string name="nombre3">Gimenez Pablo</string>
+    <string name="nombre4">Sinnott Segura Gonzalo</string>
+    <string name="nombre5">Varela Hernan</string>
+
     <!-- STRINGS MENU DE NAVEGACION -->
     <string name="menu_title_agregar">Agregar contacto</string>
     <string name="menu_title_listar">Listado de contactos</string>
