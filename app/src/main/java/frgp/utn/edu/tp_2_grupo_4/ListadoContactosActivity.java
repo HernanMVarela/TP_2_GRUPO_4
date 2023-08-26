@@ -22,6 +22,10 @@ public class ListadoContactosActivity extends AppCompatActivity {
 
         textViewP = (TextView) findViewById(R.id.textViewPrueba);
         etBuscar = (EditText) findViewById(R.id.etBuscar);
+        SharedPreferences preferencias = getSharedPreferences("agenda", Context.MODE_PRIVATE);
+        if(preferencias.getStringSet("Contactos",null)!=null){
+            textViewP.setText(preferencias.getStringSet("Contactos",null).toString());
+        }
     }
     public void regresar(android.view.View view) {
         android.content.Intent intent = new android.content.Intent(this, MainActivity.class);

@@ -22,20 +22,24 @@ public class AgregarContactoView2 extends AppCompatActivity {
 
     public void Guardar(android.view.View view){
         String InfoNom = getIntent().getStringExtra("InfoNom");
+
         Toast.makeText(this, InfoNom.toString(), Toast.LENGTH_SHORT).show();
+
         Set<String> Info = new HashSet(getIntent().getStringArrayListExtra("ArrayInfo"));
         //Collections.sort(Info);
-        if(InfoNom.toString()!=""){
             SharedPreferences preferencias = getSharedPreferences("agenda", Context.MODE_PRIVATE);
             SharedPreferences.Editor obj_editor = preferencias.edit();
             obj_editor.putStringSet(InfoNom,Info);
+            Set<String> datos = new HashSet<>();
+        if(preferencias.getStringSet("Contactos",null)!=null){
+                    datos = preferencias.getStringSet("Contactos",null);
+                }
+            datos.add(InfoNom);
+            obj_editor.putStringSet("Contactos",datos);
             obj_editor.commit();
 
             Toast.makeText(this, "Guardado", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
-        }
+
         android.content.Intent intent = new android.content.Intent(this, MainActivity.class);
         startActivity(intent);
     }
