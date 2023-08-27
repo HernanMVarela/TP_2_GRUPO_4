@@ -21,47 +21,11 @@ import frgp.utn.edu.tp_2_grupo_4.entidades.Telefono;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText prueba;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        prueba = (EditText) findViewById(R.id.etmPrueba);
-
-        guardarContacto();
-        prueba.setText(LeerContacto().toString());
-    }
-
-    private void guardarContacto(){
-        SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
-        Contacto myObject = new Contacto();
-        myObject.setNombre("Hernan");
-        myObject.setApellido("Varela");
-        myObject.setDireccion("Calle falsa 123");
-        myObject.setNacimiento("1990-04-02");
-        myObject.setTelefono(new Telefono());
-        myObject.setEmail(new Email());
-        myObject.getTelefono().setNumero("1122334455");
-        myObject.getTelefono().setTipo("Casa");
-        myObject.getEmail().setCorreo("hernan.varela@mail.com");
-        myObject.getEmail().setTipo("Casa");
-
-        SharedPreferences.Editor prefsEditor = mPrefs.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(myObject);
-        prefsEditor.putString("MyObject", json);
-        prefsEditor.commit();
-    }
-
-    private Contacto LeerContacto(){
-        SharedPreferences  mPrefs = getPreferences(MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = mPrefs.getString("MyObject", "");
-        Contacto obj = gson.fromJson(json, Contacto.class);
-
-        Log.i("contacto", obj.toString());
-        return obj;
     }
 
     @Override
