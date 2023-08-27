@@ -10,7 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.sql.Date;
 import java.util.ArrayList;
+
+import frgp.utn.edu.tp_2_grupo_4.entidades.Contacto;
+import frgp.utn.edu.tp_2_grupo_4.entidades.Email;
+import frgp.utn.edu.tp_2_grupo_4.entidades.Telefono;
 
 public class AgregarContactoActivity extends AppCompatActivity {
 
@@ -32,6 +37,7 @@ public class AgregarContactoActivity extends AppCompatActivity {
         String[] opciones = {"Casa", "Trabajo", "Móvil"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,opciones);
+
         spinnerTelefono.setAdapter(adapter);
         spinnerMail.setAdapter(adapter);
 
@@ -48,8 +54,26 @@ public class AgregarContactoActivity extends AppCompatActivity {
         android.content.Intent intent = new android.content.Intent(this, AgregarContactoView2.class);
 
         intent.putExtra("InfoNom", contactNom.getText().toString());
+        Contacto nuevo = new Contacto();
+        nuevo.setEmail(new Email());
+        nuevo.setTelefono(new Telefono());
 
+        nuevo.setNombre(contactNom.getText().toString());
+        nuevo.setApellido(contactApe.getText().toString());
+        nuevo.getTelefono().setNumero(contactTel.getText().toString());
+        nuevo.getTelefono().setTipo(spinnerTelefono.getSelectedItem().toString());
+        nuevo.getEmail().setCorreo(contactEma.getText().toString());
+        nuevo.getEmail().setTipo(spinnerMail.getSelectedItem().toString());
+        nuevo.setDireccion(contactDir.getText().toString());
+        nuevo.setNacimiento(Date.valueOf(contactDat.getText().toString()));
+
+        intent.putExtra("contacto", nuevo);
+        startActivity(intent);
+
+        /**
+        intent.putExtra("InfoNom", contactNom.getText().toString());
         ArrayList<String> Info = new ArrayList<>();
+
         Info.add(contactNom.getText().toString());
         Info.add(contactApe.getText().toString());
         Info.add(contactTel.getText().toString());
@@ -57,7 +81,7 @@ public class AgregarContactoActivity extends AppCompatActivity {
         Info.add(contactDir.getText().toString());
         Info.add(contactDat.getText().toString());
         intent.putExtra("ArrayInfo", Info);
-        startActivity(intent);
+        startActivity(intent);**/
     }
 
     @Override
