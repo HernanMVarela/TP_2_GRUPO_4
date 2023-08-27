@@ -14,9 +14,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -95,7 +93,7 @@ public class AgregarContactoActivity extends AppCompatActivity  implements View.
     }
 
     public void navegar_contactos_dos(android.view.View view) {
-        android.content.Intent intent = new android.content.Intent(this, AgregarContactoView2.class);
+        android.content.Intent intent = new android.content.Intent(this, AgregarContactoActivity2.class);
 
         intent.putExtra("InfoNom", contactNom.getText().toString());
         Contacto nuevo = new Contacto();
@@ -148,7 +146,6 @@ public class AgregarContactoActivity extends AppCompatActivity  implements View.
             return true;
         }
 
-        //TO DO: VALIDAR QUE LA FECHA NO PUEDA SER MAYOR A LA fecha corriente
         if(mCalendar.getTime().after(Calendar.getInstance().getTime())){
             Toast.makeText(this, "Ingrese una fecha igual o anterior a la actual", Toast.LENGTH_SHORT).show();
             return true;

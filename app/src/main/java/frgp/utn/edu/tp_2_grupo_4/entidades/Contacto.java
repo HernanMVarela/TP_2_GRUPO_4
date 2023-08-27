@@ -30,17 +30,6 @@ public class Contacto implements Serializable {
         this.info = info;
     }
 
-    @Override
-    public String toString() {
-        return  "Nombre: " + nombre + " " + apellido + '\n'
-                + telefono + '\n' + email + '\n' +
-                "Direccion: " + direccion + '\n' +
-                "Nacimiento: " + nacimiento + '\n' +
-                "Estudios: " + estudios + '\n' +
-                "Intereses: " + intereses + '\n' +
-                "Recibir información: " + (info ? "Si" : "No");
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -104,4 +93,26 @@ public class Contacto implements Serializable {
     public void setIntereses(List<String> intereses) {
         this.intereses = intereses;
     }
+
+    public boolean getInfo() {
+        return info;
+    }
+
+    public void setInfo(boolean info) {
+        this.info = info;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Nombre: " + nombre + " " + apellido + '\n');
+        sb.append(telefono + "\n");
+        sb.append(email + "\n");
+        sb.append("Direccion: " + direccion + "\n");
+        sb.append("Nacimiento: " + nacimiento + "\n");
+        sb.append("Estudios: " + estudios + "\n");
+        sb.append("Intereses: " + intereses + "\n");
+        sb.append("Recibir información: " + (info ? "Si" : "No"));
+        return sb.toString();
+    }
+
 }

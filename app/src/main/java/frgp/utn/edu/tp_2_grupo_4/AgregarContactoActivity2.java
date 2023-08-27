@@ -1,5 +1,7 @@
 package frgp.utn.edu.tp_2_grupo_4;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -12,13 +14,17 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Calendar;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Set;
 
 import frgp.utn.edu.tp_2_grupo_4.entidades.Contacto;
 
-public class AgregarContactoView2 extends AppCompatActivity {
+public class AgregarContactoActivity2 extends AppCompatActivity {
 
     private RadioGroup estudios;
     private RadioButton primarioInc, primarioCom, secundarioInc, secundarioCom, otros;
@@ -47,13 +53,48 @@ public class AgregarContactoView2 extends AppCompatActivity {
 
         Contacto nuevo = (Contacto) getIntent().getSerializableExtra("contacto");
 
-        /** "Contacto nuevo" DEBERÍA TRAER TODOS LOS DATOS DEL CONTACTO CARGADOS EN EL ACTIVITY ANTERIOR **/
-        /** DESARROLLAR EL RESTO DE LA CARGA DEL CONTACTO (ESTUDIOS, INTERESES, INFO) **/
+        if(checkFormValidity()){
+            return;
+        }
 
-        String InfoNom = getIntent().getStringExtra("InfoNom");
+        if(primarioInc.isChecked()){
+            nuevo.setEstudios("Primario Incompleto");
+        }else if(primarioCom.isChecked()){
+            nuevo.setEstudios("Primario Completo");
+        }else if(secundarioInc.isChecked()){
+            nuevo.setEstudios("Secundario Incompleto");
+        }else if(secundarioCom.isChecked()){
+            nuevo.setEstudios("Secundario Completo");
+        }else if(otros.isChecked()){
+            nuevo.setEstudios("Otros");
+        }
 
-        Toast.makeText(this, InfoNom.toString(), Toast.LENGTH_SHORT).show();
+        List<String> intereses = new ArrayList<>();
 
+        if(musica.isChecked()){
+            intereses.add("Musica");
+        }
+        if(tecno.isChecked()){
+            intereses.add("Tecnologia");
+        }
+        if(deporte.isChecked()){
+            intereses.add("Deporte");
+        }
+        if(arte.isChecked()){
+            intereses.add("Arte");
+        }
+
+        nuevo.setIntereses(intereses);
+
+        if(swtInfo.isChecked()){
+            nuevo.setInfo(true);
+        }else{
+            nuevo.setInfo(false);
+        }
+
+        Toast.makeText(this, nuevo.toString(), Toast.LENGTH_LONG).show();
+
+        /*
         Set<String> Info = new HashSet(getIntent().getStringArrayListExtra("ArrayInfo"));
         //Collections.sort(Info);
             SharedPreferences preferencias = getSharedPreferences("agenda", Context.MODE_PRIVATE);
@@ -68,8 +109,17 @@ public class AgregarContactoView2 extends AppCompatActivity {
             obj_editor.commit();
 
             Toast.makeText(this, "Guardado", Toast.LENGTH_SHORT).show();
-
+        */
         android.content.Intent intent = new android.content.Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    public boolean checkFormValidity(){
+        if(primarioInc.isChecked() || primarioCom.isChecked() || secundarioInc.isChecked() || secundarioCom.isChecked() || otros.isChecked()){
+            Toast.makeText(this, "No se puede dejar campos vacios", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        return false;
     }
 }

@@ -172,7 +172,9 @@
                 android:layout_height="60dp"
                 android:ems="10"
                 android:hint="@string/form_nacimiento"
-                android:inputType="date" />
+                android:editable="false"
+                android:inputType="text"
+                tools:ignore="Deprecated" />
 
             <Button
                 android:id="@+id/btnContinuar"
