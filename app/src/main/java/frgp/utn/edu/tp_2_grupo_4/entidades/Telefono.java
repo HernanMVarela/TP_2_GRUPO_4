@@ -1,6 +1,8 @@
 package frgp.utn.edu.tp_2_grupo_4.entidades;
 
-public class Telefono {
+import java.io.Serializable;
+
+public class Telefono implements Serializable {
     private String numero;
     private String tipo;
 

@@ -10,7 +10,7 @@ public class Contacto implements Serializable {
     private Telefono telefono;
     private Email email;
     private String direccion;
-    private Date nacimiento;
+    private String nacimiento;
     private String estudios;
     private List<String> intereses;
     private boolean info;
@@ -18,7 +18,7 @@ public class Contacto implements Serializable {
     public Contacto() {
     }
 
-    public Contacto(String nombre, String apellido, Telefono telefono, Email email, String direccion, Date nacimiento, String estudios, List<String> intereses, boolean info) {
+    public Contacto(String nombre, String apellido, Telefono telefono, Email email, String direccion, String nacimiento, String estudios, List<String> intereses, boolean info) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
@@ -81,11 +81,11 @@ public class Contacto implements Serializable {
         this.direccion = direccion;
     }
 
-    public Date getNacimiento() {
+    public String getNacimiento() {
         return nacimiento;
     }
 
-    public void setNacimiento(Date nacimiento) {
+    public void setNacimiento(String nacimiento) {
         this.nacimiento = nacimiento;
     }
 

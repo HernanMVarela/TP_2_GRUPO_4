@@ -1,6 +1,8 @@
 package frgp.utn.edu.tp_2_grupo_4.entidades;
 
-public class Email {
+import java.io.Serializable;
+
+public class Email implements Serializable {
     private String correo;
     private String tipo;
 

@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         myObject.setNombre("Hernan");
         myObject.setApellido("Varela");
         myObject.setDireccion("Calle falsa 123");
-        myObject.setNacimiento(Date.valueOf("1990-04-02"));
+        myObject.setNacimiento("1990-04-02");
         myObject.setTelefono(new Telefono());
         myObject.setEmail(new Email());
         myObject.getTelefono().setNumero("1122334455");

@@ -2,23 +2,29 @@ package frgp.utn.edu.tp_2_grupo_4;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 import frgp.utn.edu.tp_2_grupo_4.entidades.Contacto;
 import frgp.utn.edu.tp_2_grupo_4.entidades.Email;
 import frgp.utn.edu.tp_2_grupo_4.entidades.Telefono;
 
-public class AgregarContactoActivity extends AppCompatActivity {
+public class AgregarContactoActivity extends AppCompatActivity  implements View.OnFocusChangeListener, DatePickerDialog.OnDateSetListener, View.OnClickListener {
 
     private Spinner spinnerTelefono;
     private Spinner spinnerMail;
@@ -28,6 +34,8 @@ public class AgregarContactoActivity extends AppCompatActivity {
     private EditText contactEma;
     private EditText contactDir;
     private EditText contactDat;
+    private Calendar mCalendar;
+    private SimpleDateFormat mFormat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +56,42 @@ public class AgregarContactoActivity extends AppCompatActivity {
         contactEma = (EditText)findViewById(R.id.etvFormEmail);
         contactDir = (EditText)findViewById(R.id.etvFormDireccion);
         contactDat = (EditText)findViewById(R.id.etvFormDate);
+        contactDat.setOnFocusChangeListener(this);
+        contactDat.setOnClickListener(this);
+        mFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
+    }
+
+    @Override
+    public void onFocusChange(View view, boolean hasFocus) {
+        if (hasFocus) {
+            showPicker(view);
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        showPicker(view);
+    }
+
+    private void showPicker(View view) {
+        if (mCalendar == null)
+            mCalendar = Calendar.getInstance();
+
+        int day = mCalendar.get(Calendar.DAY_OF_MONTH);
+        int month = mCalendar.get(Calendar.MONTH);
+        int year = mCalendar.get(Calendar.YEAR);
+
+        new DatePickerDialog(view.getContext(), this, year, month, day).show();
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        mCalendar.set(Calendar.YEAR, year);
+        mCalendar.set(Calendar.MONTH, month);
+        mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+        this.contactDat.setText(mFormat.format(mCalendar.getTime()));
     }
 
     public void navegar_contactos_dos(android.view.View view) {
@@ -70,7 +113,7 @@ public class AgregarContactoActivity extends AppCompatActivity {
         nuevo.getEmail().setCorreo(contactEma.getText().toString());
         nuevo.getEmail().setTipo(spinnerMail.getSelectedItem().toString());
         nuevo.setDireccion(contactDir.getText().toString());
-        nuevo.setNacimiento(Date.valueOf(contactDat.getText().toString()));
+        nuevo.setNacimiento(contactDat.getText().toString());
 
         intent.putExtra("contacto", nuevo);
         startActivity(intent);
@@ -105,10 +148,11 @@ public class AgregarContactoActivity extends AppCompatActivity {
             return true;
         }
 
-        //TO DO: VALIDAR QUE LA FECHA NO PUEDA SER MAYOR A LA FECHA ACTUAL
-
-        //TO DO: VALIDAR QUE LA FECHA SEA DE UN FORMATO VALIDO
-
+        //TO DO: VALIDAR QUE LA FECHA NO PUEDA SER MAYOR A LA fecha corriente
+        if(mCalendar.getTime().after(Calendar.getInstance().getTime())){
+            Toast.makeText(this, "Ingrese una fecha igual o anterior a la actual", Toast.LENGTH_SHORT).show();
+            return true;
+        }
 
         return false;
     }
