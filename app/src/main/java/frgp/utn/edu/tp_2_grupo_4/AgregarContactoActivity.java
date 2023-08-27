@@ -59,7 +59,7 @@ public class AgregarContactoActivity extends AppCompatActivity {
         nuevo.setEmail(new Email());
         nuevo.setTelefono(new Telefono());
 
-        if(checkEmptyFIelds()){
+        if(checkFormValidity()){
             return;
         }
 
@@ -89,7 +89,7 @@ public class AgregarContactoActivity extends AppCompatActivity {
         startActivity(intent);**/
     }
 
-    public boolean checkEmptyFIelds(){
+    public boolean checkFormValidity(){
         if(contactNom.getText().toString().isEmpty()
         || contactApe.getText().toString().isEmpty()
         || contactTel.getText().toString().isEmpty()
@@ -99,6 +99,17 @@ public class AgregarContactoActivity extends AppCompatActivity {
             Toast.makeText(this, "No se puede dejar campos vacios", Toast.LENGTH_SHORT).show();
             return true;
         }
+
+        if(!contactEma.getText().toString().contains("@")){
+            Toast.makeText(this, "Ingrese una direccion de mail valida", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        //TO DO: VALIDAR QUE LA FECHA NO PUEDA SER MAYOR A LA FECHA ACTUAL
+
+        //TO DO: VALIDAR QUE LA FECHA SEA DE UN FORMATO VALIDO
+
+
         return false;
     }
 
