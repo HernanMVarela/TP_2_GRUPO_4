@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -58,6 +59,10 @@ public class AgregarContactoActivity extends AppCompatActivity {
         nuevo.setEmail(new Email());
         nuevo.setTelefono(new Telefono());
 
+        if(checkEmptyFIelds()){
+            return;
+        }
+
         nuevo.setNombre(contactNom.getText().toString());
         nuevo.setApellido(contactApe.getText().toString());
         nuevo.getTelefono().setNumero(contactTel.getText().toString());
@@ -82,6 +87,19 @@ public class AgregarContactoActivity extends AppCompatActivity {
         Info.add(contactDat.getText().toString());
         intent.putExtra("ArrayInfo", Info);
         startActivity(intent);**/
+    }
+
+    public boolean checkEmptyFIelds(){
+        if(contactNom.getText().toString().isEmpty()
+        || contactApe.getText().toString().isEmpty()
+        || contactTel.getText().toString().isEmpty()
+        || contactEma.getText().toString().isEmpty()
+        || contactDir.getText().toString().isEmpty()
+        || contactDat.getText().toString().isEmpty()){
+            Toast.makeText(this, "No se puede dejar campos vacios", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return false;
     }
 
     @Override
