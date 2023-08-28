@@ -2,6 +2,7 @@ package frgp.utn.edu.tp_2_grupo_4;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -39,6 +40,9 @@ public class ListadoContactosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_listado_contactos);
 
         listado = cargarLista();
+        if(listado == null){
+            return;
+        }
         for (Contacto item: listado) {
             nombres.add(item.getNombre() + " " + item.getApellido() + " - " + item.getEmail().getCorreo());
             datosCompletos.add(item.toString());
@@ -52,9 +56,15 @@ public class ListadoContactosActivity extends AppCompatActivity {
         lvcontactos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast toast2 = Toast.makeText(getApplicationContext(), datosCompletos.get(position), Toast.LENGTH_SHORT);
-                toast2.setGravity(Gravity.CENTER|Gravity.LEFT,0,0);
-                toast2.show();
+
+
+                AlertDialog.Builder contact = new AlertDialog.Builder(ListadoContactosActivity.this);
+                contact.setTitle("Contacto");
+                contact.setMessage(datosCompletos.get(position));
+                contact.setCancelable(false)
+                        .setPositiveButton("OK", null);
+                contact.show();
+
             }
         });
 
@@ -68,7 +78,6 @@ public class ListadoContactosActivity extends AppCompatActivity {
             return contactos;
         }catch (IOException e){
             Toast toast2 = Toast.makeText(getApplicationContext(), "Error al cargar el archivo", Toast.LENGTH_SHORT);
-            toast2.setGravity(Gravity.CENTER|Gravity.LEFT,0,0);
             toast2.show();
             return null;
         }catch (ClassNotFoundException e){
