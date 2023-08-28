@@ -23,7 +23,7 @@
         android:layout_marginTop="40dp"
         android:text="@string/menu_title_listar"
         android:textAlignment="center"
-        android:textSize="34sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"

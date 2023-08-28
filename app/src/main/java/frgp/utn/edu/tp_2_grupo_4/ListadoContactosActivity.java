@@ -42,32 +42,37 @@ public class ListadoContactosActivity extends AppCompatActivity {
 
         listado = cargarLista();
         if(listado == null){
-            return;
+            nombres.add("No tienes contactos guardados.");
+        }else{
+            for (Contacto item: listado) {
+                nombres.add(item.getNombre() + " " + item.getApellido() + " - " + item.getEmail().getCorreo());
+                datosCompletos.add(item.toString());
+            }
         }
-        for (Contacto item: listado) {
-            nombres.add(item.getNombre() + " " + item.getApellido() + " - " + item.getEmail().getCorreo());
-            datosCompletos.add(item.toString());
-        }
+
 
         lvcontactos = (ListView)findViewById(R.id.lvContactos);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, nombres);
         lvcontactos.setAdapter(adapter);
 
-        lvcontactos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if(listado != null){
+            lvcontactos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-                AlertDialog.Builder contact = new AlertDialog.Builder(ListadoContactosActivity.this);
-                contact.setTitle("Contacto");
-                contact.setMessage(datosCompletos.get(position));
-                contact.setCancelable(false)
-                        .setPositiveButton("OK", null);
-                contact.show();
+                    AlertDialog.Builder contact = new AlertDialog.Builder(ListadoContactosActivity.this);
+                    contact.setTitle("Contacto");
+                    contact.setMessage(datosCompletos.get(position));
+                    contact.setCancelable(false)
+                            .setPositiveButton("OK", null);
+                    contact.show();
 
-            }
-        });
+                }
+            });
+        }
+
     }
 
     public List<Contacto> cargarLista() {
