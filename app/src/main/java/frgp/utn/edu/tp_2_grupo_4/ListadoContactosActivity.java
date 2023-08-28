@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
@@ -67,17 +68,16 @@ public class ListadoContactosActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     public List<Contacto> cargarLista() {
-        try{
+        try {
             ObjectInputStream objInput = new ObjectInputStream(openFileInput(archivo));
             List<Contacto> contactos = (List<Contacto>) objInput.readObject();
             objInput.close();
             return contactos;
         }catch (IOException e){
-            Toast toast2 = Toast.makeText(getApplicationContext(), "Error al cargar el archivo", Toast.LENGTH_SHORT);
+            Toast toast2 = Toast.makeText(getApplicationContext(), "Error al cargar el archivo", Toast.LENGTH_LONG);
             toast2.show();
             return null;
         }catch (ClassNotFoundException e){
@@ -102,6 +102,10 @@ public class ListadoContactosActivity extends AppCompatActivity {
         }
         if(id==R.id.listarContacto){
             navegar_listado_contactos(null);
+            return true;
+        }
+        if(id==R.id.listarHome){
+            regresar(null);
             return true;
         }
         return super.onOptionsItemSelected(opcion_menu);

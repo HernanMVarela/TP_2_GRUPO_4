@@ -8,5 +8,9 @@
         android:title="@string/menu_title_agregar"/>
     <item android:id="@+id/listarContacto"
         android:title="@string/menu_title_listar"/>
+    <item android:id="@+id/listarHome"
+        android:title="@string/menu_title_listar"
+        android:icon="@drawable/home"
+        app:showAsAction="always" />
 
 </menu>

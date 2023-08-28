@@ -9,12 +9,16 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -104,24 +108,6 @@ public class AgregarContactoActivity2 extends AppCompatActivity {
             android.content.Intent intent = new android.content.Intent(this, MainActivity.class);
             startActivity(intent);
         }
-
-        /*
-        Set<String> Info = new HashSet(getIntent().getStringArrayListExtra("ArrayInfo"));
-        //Collections.sort(Info);
-            SharedPreferences preferencias = getSharedPreferences("agenda", Context.MODE_PRIVATE);
-            SharedPreferences.Editor obj_editor = preferencias.edit();
-            obj_editor.putStringSet(InfoNom,Info);
-            Set<String> datos = new HashSet<>();
-        if(preferencias.getStringSet("Contactos",null)!=null){
-                    datos = preferencias.getStringSet("Contactos",null);
-                }
-            datos.add(InfoNom);
-            obj_editor.putStringSet("Contactos",datos);
-            obj_editor.commit();
-
-            Toast.makeText(this, "Guardado", Toast.LENGTH_SHORT).show();
-        */
-
     }
 
     private boolean escribirRegistro(Contacto nuevo){
@@ -136,10 +122,10 @@ public class AgregarContactoActivity2 extends AppCompatActivity {
             ObjectOutputStream objOutput = new ObjectOutputStream(openFileOutput(archivo, MODE_PRIVATE));
             objOutput.writeObject(listado);
             objOutput.close();
-            Toast.makeText(this, "Contacto guardado" + '\n' + nuevo.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Contacto guardado" + '\n' + nuevo.toString(), Toast.LENGTH_LONG).show();
             return true;
         }catch (IOException e){
-            Toast.makeText(this, "Error al guardar el archivo", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error al guardar el archivo", Toast.LENGTH_LONG).show();
             return false;
         }
     }
@@ -151,9 +137,6 @@ public class AgregarContactoActivity2 extends AppCompatActivity {
             objInput.close();
             return contactos;
         }catch (IOException e){
-            Toast toast2 = Toast.makeText(getApplicationContext(), "Error al cargar el archivo", Toast.LENGTH_SHORT);
-            toast2.setGravity(Gravity.CENTER|Gravity.LEFT,0,0);
-            toast2.show();
             return null;
         }catch (ClassNotFoundException e){
             Log.e("Listado", "Error clase no encontrada");
@@ -163,9 +146,49 @@ public class AgregarContactoActivity2 extends AppCompatActivity {
 
     public boolean checkFormValidity(){
         if(!primarioInc.isChecked() && !primarioCom.isChecked() && !secundarioInc.isChecked() && !secundarioCom.isChecked() && !otros.isChecked()){
-            Toast.makeText(this, "No se puede dejar campos vacios", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No se puede dejar campos vacios", Toast.LENGTH_LONG).show();
             return true;
         }
         return false;
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu_nav){
+        MenuInflater infilter = getMenuInflater();
+        infilter.inflate(R.menu.menu_es_activity, menu_nav);
+        return super.onCreateOptionsMenu(menu_nav);
+    }
+
+    @Override public boolean onOptionsItemSelected(MenuItem opcion_menu){
+        int id = opcion_menu.getItemId();
+
+        if(id==R.id.agregarContacto){
+            navegar_agregar_contacto(null);
+            return true;
+        }
+        if(id==R.id.listarContacto){
+            navegar_listado_contactos(null);
+            return true;
+        }
+        if(id==R.id.listarHome){
+            regresar(null);
+            return true;
+        }
+        return super.onOptionsItemSelected(opcion_menu);
+    }
+
+    public void navegar_agregar_contacto(android.view.View view) {
+        android.content.Intent intent = new android.content.Intent(this, AgregarContactoActivity.class);
+        startActivity(intent);
+    }
+
+    public void navegar_listado_contactos(android.view.View view) {
+        android.content.Intent intent = new android.content.Intent(this, ListadoContactosActivity.class);
+        startActivity(intent);
+    }
+
+    public void regresar(android.view.View view) {
+        android.content.Intent intent = new android.content.Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
 }

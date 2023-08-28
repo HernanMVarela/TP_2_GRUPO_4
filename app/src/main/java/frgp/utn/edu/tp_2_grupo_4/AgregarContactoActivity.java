@@ -172,6 +172,10 @@ public class AgregarContactoActivity extends AppCompatActivity  implements View.
             navegar_listado_contactos(null);
             return true;
         }
+        if(id==R.id.listarHome){
+            regresar(null);
+            return true;
+        }
         return super.onOptionsItemSelected(opcion_menu);
     }
 
@@ -182,6 +186,11 @@ public class AgregarContactoActivity extends AppCompatActivity  implements View.
 
     public void navegar_listado_contactos(android.view.View view) {
         android.content.Intent intent = new android.content.Intent(this, ListadoContactosActivity.class);
+        startActivity(intent);
+    }
+
+    public void regresar(android.view.View view) {
+        android.content.Intent intent = new android.content.Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

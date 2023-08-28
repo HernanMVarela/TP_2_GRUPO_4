@@ -11,8 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
-import com.google.gson.Gson;
-
 import java.sql.Date;
 
 import frgp.utn.edu.tp_2_grupo_4.entidades.Contacto;
@@ -46,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
             navegar_listado_contactos(null);
             return true;
         }
+        if(id==R.id.listarHome){
+            regresar(null);
+            return true;
+        }
         return super.onOptionsItemSelected(opcion_menu);
     }
 
@@ -56,6 +58,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void navegar_listado_contactos(android.view.View view) {
         android.content.Intent intent = new android.content.Intent(this, ListadoContactosActivity.class);
+        startActivity(intent);
+    }
+
+    public void regresar(android.view.View view) {
+        android.content.Intent intent = new android.content.Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
